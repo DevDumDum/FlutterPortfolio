@@ -211,6 +211,7 @@ class Home extends StatelessWidget {
       ),
 
       floatingActionButton: FloatingActionButton(
+        elevation: 0.0,
         onPressed: () {
           debugPrint("PRESSED $pageStatus");
           pageStatus = 1;
