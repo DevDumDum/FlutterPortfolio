@@ -36,7 +36,8 @@ class _HomeState extends State<Home> {
     'flutter-dark.svg','github-dark.svg',
   ];
 
-  bool project1 = false;
+  double project1 = 0.0;
+  double project2 = 0.0;
 
   @override
 
@@ -336,12 +337,7 @@ class _HomeState extends State<Home> {
 
                               GestureDetector(
                                 onTap: (){
-                                  setState(() {
-                                    if(project1 == false)
-                                      project1 = true;
-                                    else
-                                      project1 = false;
-                                  });
+                                  setState(() => project1 = project1 == 0 ? 1.0 : 0.0);
                                 },
                                 child: Container(
                                   decoration: const BoxDecoration(
@@ -353,12 +349,86 @@ class _HomeState extends State<Home> {
                                     color: Color.fromRGBO(30,30,30,1),
                                   ),
                                   padding: const EdgeInsets.all(10),
-                                  child: const Image(image: AssetImage("assets/images/h&s.jpg"))
+                                  child: const Image(image: AssetImage("assets/images/project1.jpg"))
                                 ),
                               ),
                               
-                              Visibility(
-                                visible: project1,
+                              AnimatedOpacity(
+                                opacity: project1,
+                                duration: const Duration(milliseconds: 200),
+                                // visible: project1,
+                                child: FractionalTranslation(
+                                  translation: const Offset(0.0, -1),
+                                  child: Align(
+                                    alignment: const FractionalOffset(0.5, 0.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.only(right: 10, bottom: 5),
+                                          child: SvgPicture.network("https://api.iconify.design/skill-icons:${iconSkills[5]}",height: 40,),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ),
+                              )
+                            ]
+                          ),
+                        ),
+                      ),
+
+
+
+                      Card(
+                        color: const Color.fromRGBO(0,0,0,0),
+                        shadowColor: const Color.fromRGBO(0,0,0,0),
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10)
+                                  ),
+                                  color: Color.fromRGBO(30,30,30,1),
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  "Hide-Seek",
+                                  style: TextStyle(
+                                    color: Colors.amber[200],
+                                    letterSpacing: 1.8,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                              ) ,
+                              ),
+
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() => project2 = project2 == 0 ? 1.0 : 0.0);
+                                },
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                    color: Color.fromRGBO(30,30,30,1),
+                                  ),
+                                  padding: const EdgeInsets.all(10),
+                                  child: const Image(image: AssetImage("assets/images/project2.jpg"))
+                                ),
+                              ),
+                              
+                              AnimatedOpacity(
+                                opacity: project2,
+                                duration: const Duration(milliseconds: 200),
                                 child: FractionalTranslation(
                                   translation: const Offset(0.0, -1),
                                   child: Align(
