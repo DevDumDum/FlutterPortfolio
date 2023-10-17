@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-
-
-class UserTheme {
-  Color bgColor =  const Color.fromARGB(255, 22, 24, 22);
-  Color fontColor = const Color.fromRGBO(230,230,230,1);
-  FontWeight fontWeight = FontWeight.w500;
-  double fontSize = 18.0;
-  double letterSpacing = 1.5;
-  String fontFamily = 'IndieFlower';
-}
+import 'package:flutter_svg/flutter_svg.dart';
 
 int pageStatus = 0;
 
@@ -19,12 +10,34 @@ void main() {
   ));
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
-  
+
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  List<String> facts = [
+    "🌱 I’m currently learning flutter",
+    "🔭 I’m currently working on a mini mobile game",
+    "⚡ Fun fact: I also love cycling 👀",
+  ];
+
+  List<String> iconSkills = [
+    'html.svg','css.svg','javascript.svg','mysql-dark.svg','php-dark.svg',
+    'c.svg','cpp.svg','python-dark.svg','react-dark.svg','flutter-dark.svg',
+    'git.svg','arduino.svg','raspberrypi-dark.svg',
+  ];
+
+  List<String> usingCurrent = [
+    'flutter-dark.svg','github-dark.svg',
+  ];
+
+  @override
+
   Widget build(BuildContext context) {
-    // UserTheme uTheme = UserTheme();
 
     return Scaffold(
       backgroundColor: const Color.fromRGBO(20, 20, 20, 1),
@@ -60,39 +73,44 @@ class Home extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.only(bottom: 20),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 60.0),
+        child: SingleChildScrollView(
+          physics: ((){
+            if(pageStatus == 0)
+              return NeverScrollableScrollPhysics();
+            else
+              return null;
+          }()),
+          primary: true,
+          scrollDirection: Axis.vertical,
+
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 70.0),
                 color: const Color.fromRGBO(50,50,50,.5),
                 child: SizedBox(
                   height: 200,
                   child: Stack(
                     children: [
-                      const Expanded(
-                        child: Image(
-                          image: NetworkImage("https://w.wallhaven.cc/full/p2/wallhaven-p2gp33.jpg"),
-                          height: 300,
-                          fit: BoxFit.cover,
-                        ),
+                      const Image(
+                        image: NetworkImage("https://w.wallhaven.cc/full/p2/wallhaven-p2gp33.jpg"),
+                        height: 300,
+                        fit: BoxFit.cover,
                       ),
-                      Expanded(
-                        child: FractionalTranslation(
-                          translation: const Offset(0.0, 0.5),
-                          child: Align(
-                            alignment: const FractionalOffset(0.5, 0.0),
-                            child: SizedBox(
-                              height: 180,
-                              width: 180,
-                              child: Material(
-                                borderRadius: BorderRadius.circular(90),
-                                elevation: 5,
-                                child: const CircleAvatar(
-                                  radius: 50,
-                                  backgroundImage: AssetImage("assets/images/pf.png"),
-                                ),
+                      FractionalTranslation(
+                        translation: const Offset(0.0, 0.5),
+                        child: Align(
+                          alignment: const FractionalOffset(0.5, 0.0),
+                          child: SizedBox(
+                            height: 180,
+                            width: 180,
+                            child: Material(
+                              borderRadius: BorderRadius.circular(90),
+                              elevation: 5,
+                              child: const CircleAvatar(
+                                radius: 50,
+                                backgroundImage: AssetImage("assets/images/pf.png"),
                               ),
                             ),
                           ),
@@ -102,14 +120,14 @@ class Home extends StatelessWidget {
                   )
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
+              Container(
                 padding: const EdgeInsets.fromLTRB(25, 5, 30, 0),
                 // child: Center(
                   child: Column(
+                    
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      
                       Divider(
                         indent : 10,
                         endIndent : 10,
@@ -117,6 +135,7 @@ class Home extends StatelessWidget {
                         height: 30.0,
                         color: Colors.grey[800],
                       ),
+        
                       const Text(
                         "NAME",
                         style: TextStyle(
@@ -124,9 +143,9 @@ class Home extends StatelessWidget {
                           letterSpacing: 1.8,
                         ),
                       ),
-      
+              
                       Text(
-                        "Mark Allen",
+                        "Mark Allen Cabutaje",
                         style: TextStyle(
                           color: Colors.amber[200],
                           letterSpacing: 1.8,
@@ -152,8 +171,9 @@ class Home extends StatelessWidget {
                           ]
                         ),
                       ),
-
-
+                      
+        
+        
                       Container(
                         margin: const EdgeInsets.only(top: 10),
                         child: Material(
@@ -161,41 +181,95 @@ class Home extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                           child: Container(
                             padding: const EdgeInsets.all(10),
-                            child: const Column(
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "🌱 I’m currently learning flutter",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                                
-                                SizedBox(height: 2,),
-                                                
-                                Text(
-                                  "🔭 I’m currently working on a mini mobile game",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                                
-                                SizedBox(height: 2,),
-                                                
-                                Text(
-                                  "⚡ Fun fact: I also love cycling 👀",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                              ],
+                              children: facts.map((myFact) =>
+                                Container(
+                                  margin: const EdgeInsets.only(bottom: 5),
+                                  child: Text(myFact, style: const TextStyle(fontSize: 12, color: Colors.grey,))
+                                )
+                              ).toList(),
                             ),
                           ),
                         ),
                       ),
+        
+                      FractionalTranslation(
+                        translation: const Offset(0.0, 0.8),
+                        child: Align(
+                          alignment: const FractionalOffset(0.5, 0.0),
+                          child: Divider(
+                            indent : 65,
+                            endIndent : 10,
+                            thickness: 1.5,
+                            height: 30.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ),
+        
+                      const Text(
+                        "SKILLS",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 17,
+                          letterSpacing: 1.8,
+                        ),
+                      ),
+        
+                      const SizedBox(height: 10,),
+        
+                      Text(
+                        "Languages and tools I've worked with:",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.amber[100],
+                        ),
+                      ),
+        
+                      const SizedBox(height: 10,),
+                      
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: 
+                        <Widget>[
+                            for(int x = 0; x < iconSkills.length;)
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    for(int i = 0; i < 5 && x < iconSkills.length; i++, x++)
+                                    Container(
+                                      margin: const EdgeInsets.only(right: 10, bottom: 5),
+                                      child: SvgPicture.network("https://api.iconify.design/skill-icons:${iconSkills[x]}",height: 40,),
+                                    ),
+                                  ]
+                                )
+                        ],
+                      ),
+        
+                      const SizedBox(height: 30,),
+
+                      Text(
+                        "Currently Using",
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.amber[100],
+                        ),
+                      ),
+        
+                      const SizedBox(height: 10,),
+                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          for(String item in usingCurrent )
+                            Container(
+                              margin: const EdgeInsets.only(right: 10, bottom: 5),
+                              child: SvgPicture.network("https://api.iconify.design/skill-icons/$item",height: 40,)
+                            ),
+                      ],
+                        )
+        
                       // ElevatedButton.icon(
                       //   onPressed: (){debugPrint("INFO Pressed");},
                       //   icon: const Icon(Icons.info),
@@ -205,17 +279,22 @@ class Home extends StatelessWidget {
                   )
                 // ),
               ),
-            ),
-          ]
+            ]
+          ),
         ),
       ),
 
       floatingActionButton: FloatingActionButton(
         elevation: 0.0,
         onPressed: () {
-          debugPrint("PRESSED $pageStatus");
-          pageStatus = 1;
-          debugPrint("current $pageStatus");
+          setState(() {
+            if(pageStatus != 1){
+              pageStatus = 1;
+            } else {
+              pageStatus = 0;
+            }
+            debugPrint("current $pageStatus");
+          });
         },
         tooltip: 'Just Click It!',
         backgroundColor: const Color.fromRGBO(20,20,20,0.5),
@@ -224,3 +303,4 @@ class Home extends StatelessWidget {
     );
   }
 }
+
