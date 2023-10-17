@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 int pageStatus = 0;
+bool scrollStatus = true;
 
 void main() {
   runApp(const MaterialApp(
@@ -34,6 +35,8 @@ class _HomeState extends State<Home> {
   List<String> usingCurrent = [
     'flutter-dark.svg','github-dark.svg',
   ];
+
+  bool project1 = false;
 
   @override
 
@@ -74,14 +77,11 @@ class _HomeState extends State<Home> {
       body: Container(
         padding: const EdgeInsets.only(bottom: 20),
         child: SingleChildScrollView(
-          physics: ((){
-            if(pageStatus == 0)
-              return NeverScrollableScrollPhysics();
-            else
-              return null;
-          }()),
+          physics: scrollStatus?  const AlwaysScrollableScrollPhysics(): const NeverScrollableScrollPhysics(), //Disable or Enable body scroll
           primary: true,
           scrollDirection: Axis.vertical,
+
+          // Header or Image profile and banner section ===========================
 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
                   child: Stack(
                     children: [
                       const Image(
-                        image: NetworkImage("https://w.wallhaven.cc/full/p2/wallhaven-p2gp33.jpg"),
+                        image: NetworkImage("https://w.wallhaven.cc/full/p2/wallhaven-p2gp33.jpg"), //This image is not mine. This image is used for sample banner purposes only
                         height: 300,
                         fit: BoxFit.cover,
                       ),
@@ -120,14 +120,15 @@ class _HomeState extends State<Home> {
                   )
                 ),
               ),
+
+              //Body Content Section ===========================
+
               Container(
                 padding: const EdgeInsets.fromLTRB(25, 5, 30, 0),
-                // child: Center(
                   child: Column(
-                    
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      
+
                       Divider(
                         indent : 10,
                         endIndent : 10,
@@ -135,7 +136,9 @@ class _HomeState extends State<Home> {
                         height: 30.0,
                         color: Colors.grey[800],
                       ),
-        
+
+                      //Introduction Section ===========================
+
                       const Text(
                         "NAME",
                         style: TextStyle(
@@ -171,11 +174,13 @@ class _HomeState extends State<Home> {
                           ]
                         ),
                       ),
-                      
-        
-        
-                      Container(
+
+                      // Extra Facts section ===========================
+
+                      Card(
                         margin: const EdgeInsets.only(top: 10),
+                        color: const Color.fromRGBO(0,0,0,0),
+                        shadowColor: const Color.fromRGBO(0,0,0,0),
                         child: Material(
                           color: const Color.fromRGBO(30,30,30,1),
                           borderRadius: BorderRadius.circular(10),
@@ -193,13 +198,15 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                       ),
-        
+
+                      // Skills section ===========================
+
                       FractionalTranslation(
                         translation: const Offset(0.0, 0.8),
                         child: Align(
                           alignment: const FractionalOffset(0.5, 0.0),
                           child: Divider(
-                            indent : 65,
+                            indent : 70,
                             endIndent : 10,
                             thickness: 1.5,
                             height: 30.0,
@@ -267,17 +274,114 @@ class _HomeState extends State<Home> {
                               margin: const EdgeInsets.only(right: 10, bottom: 5),
                               child: SvgPicture.network("https://api.iconify.design/skill-icons/$item",height: 40,)
                             ),
-                      ],
-                        )
+                        ],
+                      ),
+
+                      const SizedBox(height: 10,),
+
+                      // Featured projects section ===========================
+
+                      FractionalTranslation(
+                        translation: const Offset(0.0, 0.8),
+                        child: Align(
+                          alignment: const FractionalOffset(0.5, 0.0),
+                          child: Divider(
+                            indent : 170,
+                            endIndent : 10,
+                            thickness: 1.5,
+                            height: 30.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                      ),
+
+                      const Text(
+                        "Featured Projects",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 17,
+                          letterSpacing: 1.8,
+                        ),
+                      ),
         
-                      // ElevatedButton.icon(
-                      //   onPressed: (){debugPrint("INFO Pressed");},
-                      //   icon: const Icon(Icons.info),
-                      //   label: const Text('info')
-                      // ),
+                      const SizedBox(height: 10,),
+
+                      Card(
+                        color: const Color.fromRGBO(0,0,0,0),
+                        shadowColor: const Color.fromRGBO(0,0,0,0),
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                decoration: const BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    topRight: Radius.circular(10)
+                                  ),
+                                  color: Color.fromRGBO(30,30,30,1),
+                                ),
+                                padding: const EdgeInsets.all(10),
+                                child: Text(
+                                  "Hide-Seek",
+                                  style: TextStyle(
+                                    color: Colors.amber[200],
+                                    letterSpacing: 1.8,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                              ) ,
+                              ),
+
+                              GestureDetector(
+                                onTap: (){
+                                  setState(() {
+                                    if(project1 == false)
+                                      project1 = true;
+                                    else
+                                      project1 = false;
+                                  });
+                                },
+                                child: Container(
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10),
+                                    ),
+                                    color: Color.fromRGBO(30,30,30,1),
+                                  ),
+                                  padding: const EdgeInsets.all(10),
+                                  child: const Image(image: AssetImage("assets/images/h&s.jpg"))
+                                ),
+                              ),
+                              
+                              Visibility(
+                                visible: project1,
+                                child: FractionalTranslation(
+                                  translation: const Offset(0.0, -1),
+                                  child: Align(
+                                    alignment: const FractionalOffset(0.5, 0.0),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          margin: const EdgeInsets.only(right: 10, bottom: 5),
+                                          child: SvgPicture.network("https://api.iconify.design/skill-icons:${iconSkills[5]}",height: 40,),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ),
+                              )
+                            ]
+                          ),
+                        ),
+                      )
+
                     ],
                   )
-                // ),
               ),
             ]
           ),
@@ -290,7 +394,9 @@ class _HomeState extends State<Home> {
           setState(() {
             if(pageStatus != 1){
               pageStatus = 1;
+              scrollStatus = false;
             } else {
+              scrollStatus = true;
               pageStatus = 0;
             }
             debugPrint("current $pageStatus");
