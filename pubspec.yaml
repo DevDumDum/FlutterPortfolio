@@ -28,10 +28,12 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  flutter_svg: ^2.0.5
   flutter:
     sdk: flutter
   path: any
+  flutter_svg: ^2.0.5
+  http: ^1.1.0
+  flip_card: ^0.7.0
 
 
   # The following adds the Cupertino Icons font to your application.
