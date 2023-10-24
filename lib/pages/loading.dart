@@ -48,18 +48,20 @@ class _LoadingState extends State<Loading> {
     dataStatus = true;
 
     while(loadStatus){
-      await Future.delayed(const Duration(seconds: 2), (){
+      await Future.delayed(const Duration(seconds: 1), (){
         cardKey.currentState?.toggleCard();
       });
 
       if(dataStatus){
-        loadStatus = false;
+        Future.delayed(const Duration(seconds: 1), (){
+          loadStatus = false;
+        });
         debugPrint("Done");
       }
     }
 
     if (!context.mounted) return;
-    Navigator.pushReplacementNamed(context, '/home', 
+    Navigator.pushReplacementNamed(context, './home', 
       arguments: {
         'facts': facts,
         'iconSkills': iconSkills,

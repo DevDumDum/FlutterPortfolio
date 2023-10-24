@@ -124,16 +124,6 @@ class _HomeState extends State<Home> {
                         color: Colors.grey[800],
                       ),
 
-                      // Text('Recieved: $imageBanner'),
-
-                      IconButton(
-                        icon: const Icon(Icons.account_circle_rounded),
-                        onPressed: (){
-                          Navigator.pushNamed(context, '/location');
-                        },
-
-                      ),
-
                       //Introduction Section ===========================
 
                       const Text(
@@ -338,7 +328,14 @@ class _HomeState extends State<Home> {
                                   ),
                                   GestureDetector(
                                     onTap: (){
-                                      setState(() => projectItems[x] = projectItems[x] == 0 ? 1.0 : 0.0);
+                                      setState((){ 
+                                        for(int pIndex = 0; pIndex < projectItems.length; pIndex++){
+                                          if(pIndex != x){
+                                            projectItems[pIndex] = 0.0;
+                                          }
+                                        }
+                                        projectItems[x] = projectItems[x] == 0 ? 1.0 : 0.0;
+                                      });
                                     },
                                     child: Stack(
                                       children: [
@@ -364,25 +361,58 @@ class _HomeState extends State<Home> {
                                           opacity: projectItems[x],
                                           duration: const Duration(milliseconds: 200),
                                           child: Container(
+                                            alignment: Alignment.bottomCenter,
                                             height: 230,
                                             color: const Color.fromRGBO(220,220,220,.8),
                                             margin: const EdgeInsets.all(10),
                                             padding: const EdgeInsets.all(20),
                                             child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                
-                                                Text(
-                                                  data['projects'][x][1],
-                                                  style: const TextStyle(
-                                                    fontSize: 13,
-                                                    fontWeight: FontWeight.w500
+                                                Expanded(
+                                                  flex: 3,
+                                                  child: Visibility(
+                                                    visible: projectItems[x] == 1.0 ? true: false,
+                                                    child: Container(
+                                                      margin: const EdgeInsets.symmetric(vertical: 20),
+                                                      padding: const EdgeInsets.all(10),
+                                                      child: ElevatedButton(
+                                                        onPressed: (){
+                                                          if(projectItems[x] == 1.0){
+                                                            Navigator.pushNamed(context, './location', arguments: {
+                                                              'index': x,
+                                                              'project': data['projects'][x]
+                                                            });
+                                                          }
+                                                        }, 
+                                                        child: const Text("View details...")
+                                                      ),
+                                                    ),
                                                   ),
                                                 ),
-                                                                  
-                                                Align(
-                                                  alignment: const FractionalOffset(0.5, 0.0),
+                                                // Text(
+                                                //   data['projects'][x][1],
+                                                //   style: const TextStyle(
+                                                //     fontSize: 13,
+                                                //     fontWeight: FontWeight.w500
+                                                //   ),
+                                                // ),
+                                                const Expanded(
+                                                  flex: 1,
+                                                  child: 
+                                                    Row(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      children: [
+                                                        Text("Tools Used:"),
+                                                      ],
+                                                    )
+                                                ),
+
+         
+                                                Expanded(
+                                                  flex: 2,
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    mainAxisAlignment: MainAxisAlignment.center,
                                                     children: <Widget>[
                                                       for(int icons in data['projects'][x][3])
                                                         Container(
