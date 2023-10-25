@@ -343,7 +343,7 @@ class _HomeState extends State<Home> {
                                       child: Stack(
                                         children: [
                                           Container(
-                                            height: 250,
+                                            height: 230,
                                             decoration: const BoxDecoration(
                                               borderRadius: BorderRadius.only(
                                                 topRight: Radius.circular(10),
@@ -359,7 +359,7 @@ class _HomeState extends State<Home> {
                                                 AnimatedOpacity(
                                                   opacity: projectItems[x] == 1.0 ? 0.3 : 1,
                                                   duration: const Duration(milliseconds: 200),
-                                                  child: Image(image: AssetImage("assets/images/project${x+1}.jpg"),height: 230, fit: BoxFit.cover,)
+                                                  child: Image(image: AssetImage("assets/images/project${x+1}.jpg"),height: 210, fit: BoxFit.cover,)
                                                 ),
                                               ],
                                             ),
@@ -370,8 +370,8 @@ class _HomeState extends State<Home> {
                                             duration: const Duration(milliseconds: 200),
                                             child: Container(
                                               alignment: Alignment.bottomCenter,
-                                              height: 230,
-                                              color: const Color.fromRGBO(40,40,40,.9),
+                                              height: 210,
+                                              color: const Color.fromRGBO(15,15,15,.9),
                                               margin: const EdgeInsets.all(10),
                                               padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
                                               child: Column(
@@ -486,7 +486,7 @@ class _HomeState extends State<Home> {
           });
         },
         tooltip: 'Just Click It!',
-        backgroundColor: const Color.fromRGBO(20,20,20,0.5),
+        backgroundColor: const Color.fromRGBO(10,10,10,1),
         child: const Icon(Icons.mail, size: 40),
       ),
     );

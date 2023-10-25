@@ -51,7 +51,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_native_splash:
-  color: "#111111"
+  color: "#000000"
   image: assets/images/logo.png
   android: true
   ios: true

@@ -83,8 +83,8 @@ class _ContactState extends State<Contact> {
                       "Cellphone Number:",
                       style: TextStyle(
                         color: data['theme'][0]['fontColor'],
-                        letterSpacing: 1.8,
-                        fontSize: 13,
+                        letterSpacing: 1,
+                        fontSize: 11,
                       ),
                     ),
                   ],
@@ -98,9 +98,9 @@ class _ContactState extends State<Contact> {
                       "0916-XXX-XX94",
                       style: TextStyle(
                         color: Colors.amber[200],
-                        letterSpacing: 1.8,
+                        letterSpacing: 1,
                         fontSize: 18,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ],
@@ -112,8 +112,8 @@ class _ContactState extends State<Contact> {
                       "Email address:",
                       style: TextStyle(
                         color: data['theme'][0]['fontColor'],
-                        letterSpacing: 1.8,
-                        fontSize: 13,
+                        letterSpacing: 1,
+                        fontSize: 11,
                       ),
                     ),
                   ],
@@ -125,9 +125,9 @@ class _ContactState extends State<Contact> {
                       "markxxxxxxxxxxxxx00@gmail.com",
                       style: TextStyle(
                         color: Colors.amber[200],
-                        letterSpacing: 1.8,
+                        letterSpacing: 1,
                         fontSize: 18,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
                   ],
@@ -150,13 +150,12 @@ class _ContactState extends State<Contact> {
                                 "Other Socials:",
                                 style: TextStyle(
                                   color: data['theme'][0]['fontColor'],
-                                  letterSpacing: 1.8,
-                                  fontSize: 17,
+                                  letterSpacing: 1,
+                                  fontSize: 15,
                                 ),
                               ),
                             ],
                           ),
-                          const SizedBox(height: 10,),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -171,7 +170,7 @@ class _ContactState extends State<Contact> {
                               const SizedBox(width: 10,),
                               Link(
                                 target: LinkTarget.self,
-                                uri: Uri.parse('https://github.com/MakuAren'),
+                                uri: Uri.parse('https://www.linkedin.com/'),
                                 builder:(context, followLink) => TextButton(
                                   onPressed: followLink,
                                   child: SvgPicture.network('https://api.iconify.design/skill-icons/linkedin.svg', height: 45,),
@@ -180,7 +179,7 @@ class _ContactState extends State<Contact> {
                               const SizedBox(width: 10,),
                               Link(
                                 target: LinkTarget.self,
-                                uri: Uri.parse('https://github.com/MakuAren'),
+                                uri: Uri.parse('https://youtube.com/@dumdumcoding?si=iGBIE8iVFkq0I1bb'),
                                 builder:(context, followLink) => TextButton(
                                   onPressed: followLink,
                                   child: SvgPicture.network('https://api.iconify.design/openmoji/youtube.svg', height: 65,),

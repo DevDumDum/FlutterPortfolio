@@ -20,7 +20,7 @@ class _LoadingState extends State<Loading> {
   
   List theme = [{
       'mainBgColor': const Color.fromRGBO(18, 18, 18, 1),
-      'appbarColor': const Color.fromRGBO(18, 18, 18, 1),
+      'appbarColor': const Color.fromRGBO(10, 10, 10, 1),
       'fontColor': Colors.grey,
   }];
 
