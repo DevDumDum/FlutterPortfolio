@@ -59,7 +59,8 @@ class _HomeState extends State<Home> {
         ),
         centerTitle: true,
         backgroundColor: data['theme'][0]['appbarColor'],
-        elevation: 0.0,
+        elevation: 2,
+        shadowColor: Color.fromRGBO(30,30,30,1),
       ),
       body: Container(
         padding: const EdgeInsets.only(bottom: 20),
@@ -431,7 +432,7 @@ class _HomeState extends State<Home> {
                                                           ElevatedButton(
                                                             onPressed: (){
                                                               if(projectItems[x] == 1.0){
-                                                                Navigator.pushNamed(context, './location', arguments: {
+                                                                Navigator.pushNamed(context, './details', arguments: {
                                                                   'index': x,
                                                                   'project': data['projects'][x],
                                                                   'theme': data['theme'],
@@ -470,15 +471,18 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         elevation: 0.0,
         onPressed: () {
-          setState(() {
-            if(pageStatus != 1){
-              pageStatus = 1;
-              scrollStatus = false;
-            } else {
-              scrollStatus = true;
-              pageStatus = 0;
-            }
-            debugPrint("current $pageStatus");
+          // setState(() {
+          //   if(pageStatus != 1){
+          //     pageStatus = 1;
+          //     scrollStatus = false;
+          //   } else {
+          //     scrollStatus = true;
+          //     pageStatus = 0;
+          //   }
+          //   debugPrint("current $pageStatus");
+          // });
+          Navigator.pushNamed(context, './contact', arguments: {
+            'theme': data['theme'],
           });
         },
         tooltip: 'Just Click It!',

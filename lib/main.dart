@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/home.dart';
 import 'package:myapp/pages/details.dart';
+import 'package:myapp/pages/contact.dart';
 import 'package:myapp/pages/loading.dart';
 
 
@@ -11,7 +12,8 @@ void main() {
     routes: {
       '.':(context) => const Loading(),
       './home': (context) => const Home(),
-      './location': (context) =>  const Project(),
+      './details': (context) =>  const Project(),
+      './contact': (context) =>  const Contact(),
     },
   ));
 }

@@ -61,7 +61,8 @@ class _ProjectState extends State<Project> {
         backgroundColor: data['theme'][0]['appbarColor'],
         title: const Text('Project Details'),
         centerTitle: true,
-        elevation: 0,
+        elevation: 2,
+        shadowColor: Color.fromRGBO(30,30,30,1),
       ),
       body: SingleChildScrollView(
         child: Container(
