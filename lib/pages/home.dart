@@ -30,7 +30,7 @@ class _HomeState extends State<Home> {
     data = ModalRoute.of(context)!.settings.arguments as Map;
 
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
+      backgroundColor: data['theme'][0]['mainBgColor'],//const Color.fromRGBO(18, 18, 18, 1)
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,7 +58,7 @@ class _HomeState extends State<Home> {
           ]
         ),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(18, 18, 18, 1),
+        backgroundColor: data['theme'][0]['appbarColor'],
         elevation: 0.0,
       ),
       body: Container(
@@ -126,16 +126,16 @@ class _HomeState extends State<Home> {
 
                       //Introduction Section ===========================
 
-                      const Text(
+                      Text(
                         "NAME",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: data['theme'][0]['fontColor'],
                           letterSpacing: 1.8,
                         ),
                       ),
               
                       Text(
-                        "Mark Allen Cabutaje",
+                        "Mark Allen",
                         style: TextStyle(
                           color: Colors.amber[200],
                           letterSpacing: 1.8,
@@ -148,14 +148,14 @@ class _HomeState extends State<Home> {
                       
                       RichText(
                         textAlign: TextAlign.justify,
-                        text: const TextSpan(
+                        text: TextSpan(
                           children: [
-                            WidgetSpan(child: SizedBox(width: 40.0)),
+                            const WidgetSpan(child: SizedBox(width: 40.0)),
                             TextSpan(
                               text: "An aspiring software developer with a Degree in Bachelor of Science in Computer Science at the Technological University of the Philippines Manila.",
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.grey,
+                                color: data['theme'][0]['fontColor'],
                               ),
                             ),
                           ]
@@ -179,7 +179,7 @@ class _HomeState extends State<Home> {
                                 for(String myFact in data['facts'])
                                 Container(
                                   margin: const EdgeInsets.only(bottom: 5),
-                                  child: Text(myFact, style: const TextStyle(fontSize: 12, color: Colors.grey,))
+                                  child: Text(myFact, style: TextStyle(fontSize: 12, color: data['theme'][0]['fontColor'],))
                                 ),
                               ]
                             ),
@@ -198,15 +198,15 @@ class _HomeState extends State<Home> {
                             endIndent : 10,
                             thickness: 1.5,
                             height: 30.0,
-                            color: Colors.grey[800],
+                            color: data['theme'][0]['fontColor'][800],
                           ),
                         ),
                       ),
         
-                      const Text(
+                      Text(
                         "SKILLS",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: data['theme'][0]['fontColor'],
                           fontSize: 17,
                           letterSpacing: 1.8,
                         ),
@@ -278,15 +278,15 @@ class _HomeState extends State<Home> {
                             endIndent : 10,
                             thickness: 1.5,
                             height: 30.0,
-                            color: Colors.grey[800],
+                            color: data['theme'][0]['fontColor'][800],
                           ),
                         ),
                       ),
 
-                      const Text(
+                      Text(
                         "Featured Projects",
                         style: TextStyle(
-                          color: Colors.grey,
+                          color: data['theme'][0]['fontColor'],
                           fontSize: 17,
                           letterSpacing: 1.8,
                         ),
@@ -305,6 +305,7 @@ class _HomeState extends State<Home> {
                             child: Container(
                               padding: const EdgeInsets.all(10),
                               child: Column(
+                                mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
@@ -337,96 +338,119 @@ class _HomeState extends State<Home> {
                                         projectItems[x] = projectItems[x] == 0 ? 1.0 : 0.0;
                                       });
                                     },
-                                    child: Stack(
-                                      children: [
-                                        Container(
-                                          height: 250,
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(10),
-                                              bottomLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10),
+                                    child: SizedBox(
+                                      child: Stack(
+                                        children: [
+                                          Container(
+                                            height: 250,
+                                            decoration: const BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                bottomLeft: Radius.circular(10),
+                                                bottomRight: Radius.circular(10),
+                                              ),
+                                              color: Color.fromRGBO(30,30,30,1),
                                             ),
-                                            color: Color.fromRGBO(30,30,30,1),
-                                          ),
-                                          padding: const EdgeInsets.all(10),
-                                          child: AnimatedOpacity(
-                                            opacity: projectItems[x] == 1.0 ? 0.3 : 1,
-                                            duration: const Duration(milliseconds: 200),
-                                            child: Image(image: AssetImage("assets/images/project${x+1}.jpg"), fit: BoxFit.cover,)
-                                          ),
-                                        ),
-                                        
-                                        AnimatedOpacity(
-                                          opacity: projectItems[x],
-                                          duration: const Duration(milliseconds: 200),
-                                          child: Container(
-                                            alignment: Alignment.bottomCenter,
-                                            height: 230,
-                                            color: const Color.fromRGBO(220,220,220,.8),
-                                            margin: const EdgeInsets.all(10),
-                                            padding: const EdgeInsets.all(20),
+                                            padding: const EdgeInsets.all(10),
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.stretch,
                                               children: [
-                                                Expanded(
-                                                  flex: 3,
-                                                  child: Visibility(
-                                                    visible: projectItems[x] == 1.0 ? true: false,
-                                                    child: Container(
-                                                      margin: const EdgeInsets.symmetric(vertical: 20),
-                                                      padding: const EdgeInsets.all(10),
-                                                      child: ElevatedButton(
-                                                        onPressed: (){
-                                                          if(projectItems[x] == 1.0){
-                                                            Navigator.pushNamed(context, './location', arguments: {
-                                                              'index': x,
-                                                              'project': data['projects'][x]
-                                                            });
-                                                          }
-                                                        }, 
-                                                        child: const Text("View details...")
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                // Text(
-                                                //   data['projects'][x][1],
-                                                //   style: const TextStyle(
-                                                //     fontSize: 13,
-                                                //     fontWeight: FontWeight.w500
-                                                //   ),
-                                                // ),
-                                                const Expanded(
-                                                  flex: 1,
-                                                  child: 
-                                                    Row(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                      children: [
-                                                        Text("Tools Used:"),
-                                                      ],
-                                                    )
-                                                ),
-
-         
-                                                Expanded(
-                                                  flex: 2,
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      for(int icons in data['projects'][x][3])
-                                                        Container(
-                                                          margin: const EdgeInsets.only(right: 10, bottom: 5),
-                                                          child: SvgPicture.network("https://api.iconify.design/${data['iconSkills'][icons]}",height: 40,),
-                                                        )
-                                                    ],
-                                                  ),
+                                                AnimatedOpacity(
+                                                  opacity: projectItems[x] == 1.0 ? 0.3 : 1,
+                                                  duration: const Duration(milliseconds: 200),
+                                                  child: Image(image: AssetImage("assets/images/project${x+1}.jpg"),height: 230, fit: BoxFit.cover,)
                                                 ),
                                               ],
                                             ),
                                           ),
-                                        )
-                                      ],
+                                          
+                                          AnimatedOpacity(
+                                            opacity: projectItems[x],
+                                            duration: const Duration(milliseconds: 200),
+                                            child: Container(
+                                              alignment: Alignment.bottomCenter,
+                                              height: 230,
+                                              color: const Color.fromRGBO(40,40,40,.9),
+                                              margin: const EdgeInsets.all(10),
+                                              padding: const EdgeInsets.fromLTRB(20, 20, 10, 10),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  // Text(
+                                                  //   data['projects'][x][1],
+                                                  //   style: const TextStyle(
+                                                  //     fontSize: 13,
+                                                  //     fontWeight: FontWeight.w500
+                                                  //   ),
+                                                  // ),
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: 
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                        children: [
+                                                          Text(
+                                                            "Tools Used:",
+                                                            style: TextStyle(
+                                                              fontWeight: FontWeight.w600,
+                                                              color: data['theme'][0]['fontColor'],
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      )
+                                                  ),
+                                    
+                                             
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.start,
+                                                      children: <Widget>[
+                                                        for(int icons in data['projects'][x][3])
+                                                          Container(
+                                                            margin: const EdgeInsets.only(right: 10, bottom: 5),
+                                                            child: SvgPicture.network("https://api.iconify.design/${data['iconSkills'][icons]}",height: 40,),
+                                                          )
+                                                      ],
+                                                    ),
+                                                  ),
+                                    
+                                                  const Expanded(
+                                                    flex: 1,
+                                                    child: SizedBox(height: 50,)
+                                                  ),
+                                    
+                                                  Expanded(
+                                                    flex: 2,
+                                                    child: Visibility(
+                                                      visible: projectItems[x] == 1.0 ? true: false,
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                                        children: [
+                                                          ElevatedButton(
+                                                            onPressed: (){
+                                                              if(projectItems[x] == 1.0){
+                                                                Navigator.pushNamed(context, './location', arguments: {
+                                                                  'index': x,
+                                                                  'project': data['projects'][x],
+                                                                  'theme': data['theme'],
+                                                                  'iconSkills': data['iconSkills']
+                                                                });
+                                                              }
+                                                            }, 
+                                                            child: const Text("View details...")
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ]
