@@ -24,4 +24,5 @@ Displays some of my information and other socials.
 
 
 Project video demo -> https://youtube.com/shorts/Hg2qo1HY_0Y?feature=share
-APK available at ->
+
+APK installer available at -> https://github.com/MakuAren/FlutterPortfolio/tree/development/assets/MyApp-Installer
