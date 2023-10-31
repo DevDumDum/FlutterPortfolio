@@ -1,5 +1,5 @@
 # FlutterPortfolio
-This is the product of 40 hours worth of studying and development. This is my Portfolio created in Flutter. 
+This is a product of 40 hours worth of studying and development. This is my Portfolio created in Flutter. 
 
 Project video demo -> https://youtube.com/shorts/Hg2qo1HY_0Y?feature=share
 
