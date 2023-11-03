@@ -5,6 +5,8 @@ Project video demo -> https://youtube.com/shorts/Hg2qo1HY_0Y?feature=share
 
 APK installer available at -> https://github.com/MakuAren/FlutterPortfolio/tree/development/assets/MyApp-Installer
 
+<img src="./assets/resources/8.jpg" width=80%>
+
 ## Home Screen
 This features my introduction, skills, and featured projects. Upon selecting a project, it will display the tools used for its development together with buttons that direct the user to a more detailed page.
 
